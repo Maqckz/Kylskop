@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Config
-.cfg
+config_keys.cfg
