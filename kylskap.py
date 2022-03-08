@@ -8,8 +8,9 @@ from googlesearch import search
 API_KEY = os.environ.get("API_TOKEN")
 HEADER = {"Content-Type":'application/json'}
 print()
-query = input("Mata in ingredienser med , emellan: ")
+query = input('Mata in ingredienser med "," som separerar(engelska): ')
 recept = input("välj antal recept mellan (1 - 10) ")
+
 
 recept1 = int(recept)
 antal = recept1 - 1
@@ -18,88 +19,36 @@ antal = recept1 - 1
 
 ingredient = requests.get('https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + query + '&number=' + recept + '&apiKey=' + f'{API_KEY}', params=HEADER,) 
 
+query1 = (ingredient.json()[0]['title'])
+
+def sök():
+
+    print("Länk till recept")
+    for ii in ingredient.json():
+        query1 = ii["title"]
+        for i in search(query1, tld="com", num=1, stop=1, pause=2):
+            print(i)
+
+
+def val1():
+    for i in ingredient.json():
+        print(i["title"])
+
+
+
 def val():
     print("Recept: ")
-    if recept1 == 1: 
-        print(ingredient.json()[0]['title'])
-    elif recept1 == 2:
-        print(ingredient.json()[0]['title'])
-        print(ingredient.json()[antal]['title'])
-    elif recept1 == 3:
-        print(ingredient.json()[0]['title'])
-        print(ingredient.json()[1]['title'])
-        print(ingredient.json()[antal]['title'])
-    elif recept1 == 4:
-        print(ingredient.json()[0]['title'])
-        print(ingredient.json()[1]['title'])
-        print(ingredient.json()[2]['title'])
-        print(ingredient.json()[antal]['title'])
-    elif recept1 == 5:
-        print(ingredient.json()[0]['title'])
-        print(ingredient.json()[1]['title'])
-        print(ingredient.json()[2]['title'])
-        print(ingredient.json()[3]['title'])
-        print(ingredient.json()[antal]['title'])
-    elif recept1 == 6:
-        print(ingredient.json()[0]['title'])
-        print(ingredient.json()[1]['title'])
-        print(ingredient.json()[2]['title'])
-        print(ingredient.json()[3]['title'])
-        print(ingredient.json()[4]['title'])
-        print(ingredient.json()[antal]['title'])
-    elif recept1 == 7:
-        print(ingredient.json()[0]['title'])
-        print(ingredient.json()[1]['title'])
-        print(ingredient.json()[2]['title'])
-        print(ingredient.json()[3]['title'])
-        print(ingredient.json()[4]['title'])
-        print(ingredient.json()[5]['title'])
-        print(ingredient.json()[antal]['title'])
-    elif recept1 == 8:
-        print(ingredient.json()[0]['title'])
-        print(ingredient.json()[1]['title'])
-        print(ingredient.json()[2]['title'])
-        print(ingredient.json()[3]['title'])
-        print(ingredient.json()[4]['title'])
-        print(ingredient.json()[5]['title'])
-        print(ingredient.json()[6]['title'])
-        print(ingredient.json()[7]['title'])
-        print(ingredient.json()[antal]['title'])
-    elif recept1 == 9:
-        print(ingredient.json()[0]['title'])
-        print(ingredient.json()[1]['title'])
-        print(ingredient.json()[2]['title'])
-        print(ingredient.json()[3]['title'])
-        print(ingredient.json()[4]['title'])
-        print(ingredient.json()[5]['title'])
-        print(ingredient.json()[6]['title'])
-        print(ingredient.json()[7]['title'])
-        print(ingredient.json()[antal]['title'])
-    elif recept1 == 10:
-        print(ingredient.json()[0]['title'])
-        print(ingredient.json()[1]['title'])
-        print(ingredient.json()[2]['title'])
-        print(ingredient.json()[3]['title'])
-        print(ingredient.json()[4]['title'])
-        print(ingredient.json()[5]['title'])
-        print(ingredient.json()[6]['title'])
-        print(ingredient.json()[7]['title'])
-        print(ingredient.json()[8]['title'])
-        print(ingredient.json()[antal]['title'])
+    if recept1 >= 1 and recept1 <= 10: 
+        val1()
+        print()
+        sök()
+
     else:
         print("Finns inte, Felaktig input ")
 
-
-def sök():
-    query = (ingredient.json()[0]['title'])
-
-    for i in search(query, tld="com", num=1, stop=1, pause=2):
-        print("Länk till recept: ")
-        print(i)
 
 
 
 print()
 val()
 print()
-sök()
