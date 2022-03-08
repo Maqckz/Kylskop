@@ -14,10 +14,12 @@ recept = input("välj antal recept mellan (1 - 10) ")
 recept1 = int(recept)
 antal = recept1 - 1
 
+#if query == 
 
 ingredient = requests.get('https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + query + '&number=' + recept + '&apiKey=' + f'{API_KEY}', params=HEADER,) 
 
 def val():
+    print("Recept: ")
     if recept1 == 1: 
         print(ingredient.json()[0]['title'])
     elif recept1 == 2:
@@ -85,7 +87,7 @@ def val():
         print(ingredient.json()[8]['title'])
         print(ingredient.json()[antal]['title'])
     else:
-        print("Du är korkad pannkaka")
+        print("Finns inte, Felaktig input ")
 
 
 def sök():
@@ -98,7 +100,6 @@ def sök():
 
 
 print()
-print("Recept: ")
 val()
 print()
 sök()
