@@ -68,7 +68,7 @@ while meny != 0:
         print()
         joke()
     
-    elif meny > 2 and meny < 0:
+    elif meny > 2:
         print()
         print("Fel input, välj något av dem givna alternativen ")
 
@@ -76,4 +76,5 @@ while meny != 0:
     menu()
     meny = int(input("Välj ett av alternativen "))
 
+print()
 print("DU AVSLUTADE PROGRAMMET!")
