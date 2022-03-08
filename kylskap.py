@@ -37,8 +37,8 @@ def val1():
 
 
 def val():
-    print("Recept: ")
     if recept1 >= 1 and recept1 <= 10: 
+        print("Recept: ")
         val1()
         print()
         sök()
