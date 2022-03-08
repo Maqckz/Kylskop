@@ -1,30 +1,104 @@
 import requests
-from configparser import ConfigParser
-config = ConfigParser()
-config.read('./config/config_keys.cfg')
+from dotenv import load_dotenv
+import json
+import os
+load_dotenv()
+from googlesearch import search
 
-API_KEY = config.get('spoonacular', 'api_key')
+API_KEY = os.environ.get("API_TOKEN")
+HEADER = {"Content-Type":'application/json'}
+print()
+query = input("Mata in ingredienser med , emellan: ")
+recept = input("välj antal recept mellan (1 - 10) ")
 
-def getRecipeByIngredients(ingredients):
-    payload = {
-        'fillIngredients': False,
-        'ingredients': ingredients,
-        'limitLicense': False,
-        'number': 5,
-        'ranking': 1
-    }
-
-    endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients"
+recept1 = int(recept)
+antal = recept1 - 1
 
 
-    headers={
-        "X-Mashape-Key": API_KEY,
-        "X-Mashape-Host": "mashape host"
-    }
+ingredient = requests.get('https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + query + '&number=' + recept + '&apiKey=' + f'{API_KEY}', params=HEADER,) 
 
-    r = requests.get(endpoint, params=payload, headers=headers)
-    results = r.json()
-    title = results[0]['title']
-    print(title)
+def val():
+    if recept1 == 1: 
+        print(ingredient.json()[0]['title'])
+    elif recept1 == 2:
+        print(ingredient.json()[0]['title'])
+        print(ingredient.json()[antal]['title'])
+    elif recept1 == 3:
+        print(ingredient.json()[0]['title'])
+        print(ingredient.json()[1]['title'])
+        print(ingredient.json()[antal]['title'])
+    elif recept1 == 4:
+        print(ingredient.json()[0]['title'])
+        print(ingredient.json()[1]['title'])
+        print(ingredient.json()[2]['title'])
+        print(ingredient.json()[antal]['title'])
+    elif recept1 == 5:
+        print(ingredient.json()[0]['title'])
+        print(ingredient.json()[1]['title'])
+        print(ingredient.json()[2]['title'])
+        print(ingredient.json()[3]['title'])
+        print(ingredient.json()[antal]['title'])
+    elif recept1 == 6:
+        print(ingredient.json()[0]['title'])
+        print(ingredient.json()[1]['title'])
+        print(ingredient.json()[2]['title'])
+        print(ingredient.json()[3]['title'])
+        print(ingredient.json()[4]['title'])
+        print(ingredient.json()[antal]['title'])
+    elif recept1 == 7:
+        print(ingredient.json()[0]['title'])
+        print(ingredient.json()[1]['title'])
+        print(ingredient.json()[2]['title'])
+        print(ingredient.json()[3]['title'])
+        print(ingredient.json()[4]['title'])
+        print(ingredient.json()[5]['title'])
+        print(ingredient.json()[antal]['title'])
+    elif recept1 == 8:
+        print(ingredient.json()[0]['title'])
+        print(ingredient.json()[1]['title'])
+        print(ingredient.json()[2]['title'])
+        print(ingredient.json()[3]['title'])
+        print(ingredient.json()[4]['title'])
+        print(ingredient.json()[5]['title'])
+        print(ingredient.json()[6]['title'])
+        print(ingredient.json()[7]['title'])
+        print(ingredient.json()[antal]['title'])
+    elif recept1 == 9:
+        print(ingredient.json()[0]['title'])
+        print(ingredient.json()[1]['title'])
+        print(ingredient.json()[2]['title'])
+        print(ingredient.json()[3]['title'])
+        print(ingredient.json()[4]['title'])
+        print(ingredient.json()[5]['title'])
+        print(ingredient.json()[6]['title'])
+        print(ingredient.json()[7]['title'])
+        print(ingredient.json()[antal]['title'])
+    elif recept1 == 10:
+        print(ingredient.json()[0]['title'])
+        print(ingredient.json()[1]['title'])
+        print(ingredient.json()[2]['title'])
+        print(ingredient.json()[3]['title'])
+        print(ingredient.json()[4]['title'])
+        print(ingredient.json()[5]['title'])
+        print(ingredient.json()[6]['title'])
+        print(ingredient.json()[7]['title'])
+        print(ingredient.json()[8]['title'])
+        print(ingredient.json()[antal]['title'])
+    else:
+        print("Du är korkad pannkaka")
 
-getRecipeByIngredients('apple') 
+
+def sök():
+    query = (ingredient.json()[0]['title'])
+
+    for i in search(query, tld="com", num=1, stop=1, pause=2):
+        print("Länk till recept: ")
+        print(i)
+
+
+
+print()
+print("Recept: ")
+val()
+print()
+sök()
