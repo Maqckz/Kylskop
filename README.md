@@ -2,8 +2,6 @@
 # Kylskop
 Denna README är skriven i markdown. Syftet med mitt projekt är att man ska mata in råvaror/ingredienser i programmet och få ut recept. Programmet är skrivet i Python och lite javascript.
 
-# Teknologier/språk
-
 
 # Usage 
 
